@@ -1,0 +1,2 @@
+mvn clean test -DsuiteXmlFile=testng.xml -Denv=qa
+mvn clean test -DsuiteXmlFile="negativeTests.xml,positiveTests.xml,smokeTests.xml"  -Denv=qa

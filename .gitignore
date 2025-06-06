@@ -36,3 +36,14 @@ build/
 
 ### Mac OS ###
 .DS_Store
+
+allure-results/
+
+# Ignore allure-report
+allure-report/
+
+# Ignore allure-report
+allure_Reports/
+
+# Ignore .idea folder (IDE settings)
+.idea/

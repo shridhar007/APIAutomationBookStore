@@ -1,0 +1,16 @@
+{
+  "environments": {
+    "test": {
+      "base_url": "http://127.0.0.1",
+      "port": "8000",
+      "default_username": "shridhar.porje@gmail.com",
+      "default_password": "123456"
+    },
+    "stage": {
+      "base_url": "",
+      "port": "",
+      "default_username": "shridhar.porje@gmail.com",
+      "default_password": "123456"
+    }
+  }
+}
