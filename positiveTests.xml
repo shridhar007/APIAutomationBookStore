@@ -10,7 +10,7 @@
             </run>
         </groups>
         <classes>
-            <class name="com.apiautomationbookstore.tests.PostiveTests" />
+            <class name="com.apiautomationbookstore.tests.PositiveTests" />
         </classes>
     </test>
 </suite>

@@ -3,7 +3,10 @@ package com.apiautomationbookstore.tests;
 import com.apiautomationbookstore.util.CommonFunctions;
 import com.apiautomationbookstore.util.TestContext;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.qameta.allure.Allure;
 import io.qameta.allure.Step;
+import jdk.jshell.spi.ExecutionControl;
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Parameters;
 
@@ -31,6 +34,7 @@ abstract class BaseTestCase {
         testContext = TestContext.getInstance();
         CommonFunctions.getRootFolder();
         testContext.put("rootFolder", CommonFunctions.getRootFolder());
+
         String env = "test";
         System.out.println("From Before Suite: " + env);
 
@@ -47,12 +51,19 @@ abstract class BaseTestCase {
                 populateEnvData("stage", map.get("stage"));
             }
             else {
-                System.out.println("Invalid environment selected. Throw an exception and exit");
+                System.out.println("Invalid environment argument. Existing the execution...");
+                System.exit(0);
             }
+
+            // Initialize default system user
+            CommonFunctions.addDefaultUser();
+            String authToken = CommonFunctions.generateAuthToken();
+            Map<String, Object> respMap = CommonFunctions.getMapFromJson(authToken);
+            testContext.put("authToken", respMap.get("access_token").toString());
         }
         else {
-
-            System.out.println("Framework Config file is missing. Throw an exception and exit");
+            System.out.println("Framework Config file is missing. Existing the execution...");
+            System.exit(0);
         }
     }
 
@@ -64,5 +75,18 @@ abstract class BaseTestCase {
         });
     }
 
+    @AfterSuite
+    public void removeUnwantedAllureTags() {
+        Allure.getLifecycle().updateTestCase(
+                testResult -> {
+                    testResult.getLabels().removeIf(label -> "suite".equals(label.getName()));
+                }
+        );
 
+        Allure.getLifecycle().updateTestCase(
+                testResult -> {
+                    testResult.getLabels().removeIf(label -> label.getName().startsWith("package:"));
+                }
+        );
+    }
 }

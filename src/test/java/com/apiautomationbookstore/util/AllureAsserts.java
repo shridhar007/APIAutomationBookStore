@@ -1,5 +1,6 @@
 package com.apiautomationbookstore.util;
 
+import io.qameta.allure.Allure;
 import io.qameta.allure.Step;
 import org.testng.Assert;
 
@@ -20,8 +21,34 @@ public class AllureAsserts {
         Assert.assertEquals(actual, expected);
     }
 
+    public static void assertEquals(int actual, int expected, String message) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Validation of ").append(message).append(" ")
+                .append(actual)
+                .append(" and ")
+                .append(expected)
+                .append(" is ").append(" ").append(actual == expected).append(" ");
+
+
+        Allure.step(sb.toString());
+        Assert.assertEquals(actual, expected, message);
+    }
+
     @Step("Assert that actual value '{actual}' equals expected '{expected}' with message: {message}")
-    public static void assertEquals(Object actual, Object expected, String message) {
+    public static void assertEquals(String actual, String expected, String message) {
+        Assert.assertEquals(actual, expected, message);
+    }
+
+    @Step("Assert that actual value '{actual}' equals expected '{expected}' with message: {message}")
+    public static void assertEquals(boolean actual, boolean expected, String message) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Validation of ").append(message).append(" ")
+                .append(actual)
+                .append(" and ")
+                .append(expected)
+                .append(" is ").append(" ").append(actual == expected).append(" ");
+
+        Allure.step(sb.toString());
         Assert.assertEquals(actual, expected, message);
     }
 
