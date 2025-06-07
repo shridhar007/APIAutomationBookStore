@@ -76,21 +76,84 @@ public class JsonSchema {
               ]
             }
             """;
+    public static String GETBOOKDETAILSBYID = """
+            {              
+              "type": "object",
+              "properties": {
+                "author": {
+                  "type": "string"
+                },
+                "book_summary": {
+                  "type": "string"
+                },
+                "id": {
+                  "type": "integer"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "published_year": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "author",
+                "book_summary",
+                "id",
+                "name",
+                "published_year"
+              ]
+            }
+            """;
+
     public static String GETALLBOOKSDETAIL = """
             {
-                    "type": "object",
-                    "items": {
-                        "type": "object",
-                        "properties": {
-                            "book_summary": {"type": "string"},
-                            "id": {"type": "integer"},
-                            "name": {"type": "string"},
-                            "published_year": {"type": "integer"},
-                            "author": {"type": "string"}
-                        },
-                        "required": ["book_summary", "id", "name", "published_year", "author"],
-                        "additionalProperties": True
-                    }
+              "$schema": "http://json-schema.org/draft-07/schema#",
+              "title": "Generated schema for Root",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "author": {
+                    "type": "string"
+                  },
+                  "book_summary": {
+                    "type": "string"
+                  },
+                  "id": {
+                    "type": "number"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "published_year": {
+                    "type": "number"
+                  }
+                },
+                "required": [
+                  "author",
+                  "book_summary",
+                  "id",
+                  "name",
+                  "published_year"
+                ]
+              }
+            }
+            """;
+    public static String DELETEBOOK = """
+            {
+              "$schema": "http://json-schema.org/draft-07/schema#",
+              "title": "Generated schema for Root",
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
                 }
+              },
+              "required": [
+                "message"
+              ]
+            }
             """;
 }
+

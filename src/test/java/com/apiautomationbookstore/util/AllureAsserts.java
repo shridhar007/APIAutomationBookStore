@@ -52,9 +52,9 @@ public class AllureAsserts {
         Assert.assertEquals(actual, expected, message);
     }
 
-    @Step("Assert that two objects are not equal")
-    public static void assertNotEquals(Object actual, Object expected) {
-        Assert.assertNotEquals(actual, expected);
+    @Step("Assert that two Strings are not equal")
+    public static void assertNotEquals(String actual, String expected, String message) {
+        Assert.assertNotEquals(actual, expected, message);
     }
 
     @Step("Assert that object is not null")

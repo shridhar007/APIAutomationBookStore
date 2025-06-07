@@ -1,6 +1,7 @@
 package com.apiautomationbookstore.util;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
@@ -14,6 +15,7 @@ import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -96,6 +98,13 @@ public class CommonFunctions {
         ObjectMapper mapper = new ObjectMapper();
         Map<String, Object> map = mapper.readValue(jsonString, Map.class);
         return map;
+    }
+
+    public static List<Map<String, Object>> getMapListFromJson(String jsonString) throws JsonProcessingException {
+        ObjectMapper mapper = new ObjectMapper();
+        List<Map<String, Object>> mapList = mapper.readValue(jsonString, new TypeReference<>() {
+        });
+        return mapList;
     }
 
     public static int getRandomInt(int min, int max) {

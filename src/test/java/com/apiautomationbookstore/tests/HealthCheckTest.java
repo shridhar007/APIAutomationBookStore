@@ -5,7 +5,6 @@ import com.apiautomationbookstore.util.AllureAsserts;
 import com.apiautomationbookstore.util.CommonFunctions;
 import com.apiautomationbookstore.util.TestContext;
 import io.qameta.allure.Allure;
-import io.qameta.allure.Description;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.testng.annotations.BeforeClass;
