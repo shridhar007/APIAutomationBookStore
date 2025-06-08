@@ -48,7 +48,6 @@ abstract class BaseTestCase {
             ObjectMapper mapper = new ObjectMapper();
             Map map = (Map) mapper.readValue(new File(config_file_path.toString()), Map.class).get("environments");
 
-
             if(env.equalsIgnoreCase("TEST")) {
               populateEnvData("test", map.get("test"));
             } else if (env.equalsIgnoreCase("STAGE")) {
