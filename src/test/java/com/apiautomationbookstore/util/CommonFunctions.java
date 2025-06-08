@@ -11,6 +11,7 @@ import org.json.JSONObject;
 import org.json.JSONTokener;
 
 import java.io.ByteArrayInputStream;
+import java.io.File;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
@@ -112,5 +113,34 @@ public class CommonFunctions {
             throw new IllegalArgumentException("min must be <= max");
         }
         return ThreadLocalRandom.current().nextInt(min, max + 1);
+    }
+
+    public static boolean deleteAllFiles(String folderPath) {
+        File folder = new File(folderPath);
+
+        try {
+            if (folder.exists() && folder.isDirectory()) {
+                File[] files = folder.listFiles();
+
+                if (files != null) {
+                    for (File file : files) {
+                        if (file.isFile()) {
+                            file.delete();
+                        } else if (file.isDirectory()) {
+                            deleteAllFiles(file.getAbsolutePath()); // recursive delete
+                            file.delete(); // delete subfolder after contents
+                        }
+                    }
+                }
+            } else {
+                System.out.println("Provided path is not a directory.");
+            }
+        }
+        catch (Exception e) {
+            System.out.println("Exception in deleting files @ "+folderPath);
+            System.out.println("Exception Type: " + e.getClass().getName());
+            System.out.println("Exception Message: " + e.getMessage());
+        }
+        return true;
     }
 }

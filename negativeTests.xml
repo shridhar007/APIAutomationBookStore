@@ -1,16 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-
-<suite name="NegativeTests">
+<suite name="Negative API Tests">
     <parameter name="environment" value="${env}" />
-    <test name="NegativeTests">
-        <groups>
-            <run>
-                <include name="negative" />
-            </run>
-        </groups>
+    <test name="Negative Tests" parallel="false">
         <classes>
-            <class name="com.apiautomationbookstore.tests.NegativeTests" />
+            <class name="com.apiautomationbookstore.tests.BaseTestCase"></class>
+            <class name="com.apiautomationbookstore.tests.negative.HealthCheckTestNeg" />
+            <class name="com.apiautomationbookstore.tests.negative.UserManagementNeg" />
         </classes>
     </test>
 </suite>

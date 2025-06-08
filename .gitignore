@@ -47,3 +47,5 @@ allure_Reports/
 
 # Ignore .idea folder (IDE settings)
 .idea/
+
+test-output/

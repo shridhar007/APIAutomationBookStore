@@ -5,6 +5,8 @@
             <class name="com.apiautomationbookstore.tests.positive.HealthCheckTest"/>
             <class name="com.apiautomationbookstore.tests.positive.UserManagement"/>
             <class name="com.apiautomationbookstore.tests.positive.BookStoreManagement"/>
+            <class name="com.apiautomationbookstore.tests.negative.HealthCheckTestNeg" />
+            <class name="com.apiautomationbookstore.tests.negative.UserManagementNeg" />
         </classes>
     </test>
 </suite>

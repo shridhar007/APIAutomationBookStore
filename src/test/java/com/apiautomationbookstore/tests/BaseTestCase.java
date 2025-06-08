@@ -6,13 +6,14 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.javafaker.Faker;
 import io.qameta.allure.Allure;
 import io.qameta.allure.Step;
+import io.restassured.RestAssured;
 import io.restassured.specification.RequestSpecification;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.Parameters;
+import org.testng.annotations.*;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.LinkedHashMap;
@@ -21,25 +22,33 @@ import java.util.Map;
 
 
 
-abstract class BaseTestCase {
+public abstract class BaseTestCase {
 
     public static TestContext testContext;
     public String requestURL;
     public RequestSpecification requestSpecification;
-    Faker faker = new Faker();
+    public Faker faker = new Faker();
+
+    @DataProvider(name = "methodsToCall")
+    public Object[] getData() {
+//        return new Object[] {"post"};
+        return new Object[] {"get","post", "patch", "put", "delete"};
+    }
 
     @BeforeSuite
     @Parameters("env")
     @Step("Setting One time framework environments")
-//    public void beforeSuite(String env) throws IOException {
-    public void beforeSuite() throws IOException {
-
+    public void beforeSuite(String env) throws IOException {
+//    public void beforeSuite() throws IOException {
         System.out.println("Initialize framework variables here");
         testContext = TestContext.getInstance();
-        CommonFunctions.getRootFolder();
         testContext.put("rootFolder", CommonFunctions.getRootFolder());
 
-        String env = "test";
+        // Clean up allure report.
+        String allure_result_path = ((Path)testContext.get("rootFolder")).resolve("allure-results").toString();
+        CommonFunctions.deleteAllFiles(allure_result_path);
+
+//        String env = "test";
         System.out.println("From Before Suite: " + env);
 
         // Read the config file and add its values to testContext for later use.
@@ -70,6 +79,20 @@ abstract class BaseTestCase {
         }
     }
 
+    @BeforeMethod
+    public void testSetup() {
+        Allure.label("owner", "Shridhar Porje");
+        Allure.label("severity", "critical");
+
+        String portNumber = TestContext.getInstance().get("port").toString();
+        String baseURL = TestContext.getInstance().get("base_url").toString();
+        requestURL = baseURL + ":" + portNumber;
+
+        requestSpecification = RestAssured.given();
+        requestSpecification.baseUri(requestURL);
+        requestSpecification.header("Content-Type", "application/json");
+    }
+
     @Step("Initializing test environment data")
     public static void populateEnvData(String env, Object envData) {
         LinkedHashMap<String, String> tempStorage = (LinkedHashMap<String, String>) envData;
@@ -79,17 +102,25 @@ abstract class BaseTestCase {
     }
 
     @AfterSuite
-    public void removeUnwantedAllureTags() {
-        Allure.getLifecycle().updateTestCase(
-                testResult -> {
-                    testResult.getLabels().removeIf(label -> "suite".equals(label.getName()));
-                }
-        );
+    public void generateSingleFileAllureReport() {
 
-        Allure.getLifecycle().updateTestCase(
-                testResult -> {
-                    testResult.getLabels().removeIf(label -> label.getName().startsWith("package:"));
-                }
-        );
+        try {
+            ProcessBuilder builder = new ProcessBuilder();
+            builder.command("allure", "generate", "--clean", "--single-file", "./allure-results/", "-o", "./allure-report");
+            Process process = builder.start();
+
+            // Capture output
+            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                System.out.println(line);
+            }
+
+            int exitCode = process.waitFor();
+            System.out.println("Exited with code: " + exitCode);
+
+        } catch (IOException | InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }

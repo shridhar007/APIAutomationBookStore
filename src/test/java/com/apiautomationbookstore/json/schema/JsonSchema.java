@@ -155,5 +155,61 @@ public class JsonSchema {
               ]
             }
             """;
+
+    public static String InvalidReqMethodResp = """
+            {
+              "$schema": "http://json-schema.org/draft-07/schema#",
+              "title": "Generated schema for Root",
+              "type": "object",
+              "properties": {
+                "detail": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "detail"
+              ]
+            }
+            """;
+
+    public static String UserRegistrationAPIWithoutBody = """
+            {
+              "$schema": "http://json-schema.org/draft-07/schema#",
+              "title": "Generated schema for Root",
+              "type": "object",
+              "properties": {
+                "detail": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "type": {
+                        "type": "string"
+                      },
+                      "loc": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "msg": {
+                        "type": "string"
+                      },
+                      "input": {}
+                    },
+                    "required": [
+                      "type",
+                      "loc",
+                      "msg",
+                      "input"
+                    ]
+                  }
+                }
+              },
+              "required": [
+                "detail"
+              ]
+            }
+            """;
 }
 
