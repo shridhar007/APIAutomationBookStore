@@ -107,4 +107,7 @@ public class UserManagementNeg extends BaseTestCase {
             AllureAsserts.assertEquals("Field required",tempLinkedHashMapResult.get("msg"), "API Response validation");
         }
     }
+
+    // User Registration - Call with GET, PUT, PATCH, DELETE, Incorrect end point, Incorrect body
+
 }

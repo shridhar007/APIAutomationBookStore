@@ -31,7 +31,6 @@ public abstract class BaseTestCase {
 
     @DataProvider(name = "methodsToCall")
     public Object[] getData() {
-//        return new Object[] {"post"};
         return new Object[] {"get","post", "patch", "put", "delete"};
     }
 

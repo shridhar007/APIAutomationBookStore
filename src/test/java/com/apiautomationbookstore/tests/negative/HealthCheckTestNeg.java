@@ -65,7 +65,6 @@ public class HealthCheckTestNeg extends BaseTestCase {
 
 
 
-    // User Registration - Call with GET, PUT, PATCH, DELETE, Incorrect end point, Incorrect body
     // User Login - Call with GET, PUT, PATCH, DELETE, Incorrect end point, Incorrect body
     // Add New Book - Call with  PUT, PATCH, DELETE, Without token, Incorrect end point, Incorrect body
     // Get Book Details - Call with POST, Without token, Incorrect end point, Invalid book id [Alphanumeric Value]

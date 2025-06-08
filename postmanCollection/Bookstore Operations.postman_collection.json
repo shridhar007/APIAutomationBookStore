@@ -1,0 +1,173 @@
+{
+	"info": {
+		"_postman_id": "dc02efce-177c-4189-9c25-cc84a2c0055e",
+		"name": "Bookstore Operations",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "6134147",
+		"_collection_link": "https://eagles-7969.postman.co/workspace/SpurQLabBookStore~9a5bbbf6-94d2-4406-a1be-0ab465fbbab7/collection/6134147-dc02efce-177c-4189-9c25-cc84a2c0055e?action=share&source=collection_link&creator=6134147"
+	},
+	"item": [
+		{
+			"name": "Add New Book",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzaHJpZGhhci5wb3JqZUBnbWFpbC5jb20iLCJleHAiOjE3NDg0OTA1NTB9.Xjo_PI6LE8jt9gEo5652W7Q-DUTqTpbb4i46Ef4dcdk",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Mastering Cue techniques\", \r\n    \"author\": \"Mark Williams\",\r\n    \"published_year\": \"1999\",\r\n    \"book_summary\": \"Primer book for Cue basics\"\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/books",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"books"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Book By Id",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzaHJpZGhhci5wb3JqZUBnbWFpbC5jb20iLCJleHAiOjE3NDg0OTA1NTB9.Xjo_PI6LE8jt9gEo5652W7Q-DUTqTpbb4i46Ef4dcdk",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Mastering Cue techniques\", \r\n    \"author\": \"Mark Williams\",\r\n    \"published_year\": \"1999\",\r\n    \"book_summary\": \"Primer book for Cue basics\"\r\n\r\n}"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/books/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"books",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Books",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzaHJpZGhhci5wb3JqZUBnbWFpbC5jb20iLCJleHAiOjE3NDg0OTA1NTB9.Xjo_PI6LE8jt9gEo5652W7Q-DUTqTpbb4i46Ef4dcdk",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Mastering Cue techniques\", \r\n    \"author\": \"Mark Williams\",\r\n    \"published_year\": \"1999\",\r\n    \"book_summary\": \"Primer book for Cue basics\"\r\n\r\n}"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/books",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"books"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update existing book - PUT",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzaHJpZGhhci5wb3JqZUBnbWFpbC5jb20iLCJleHAiOjE3NDg0OTA1NTB9.Xjo_PI6LE8jt9gEo5652W7Q-DUTqTpbb4i46Ef4dcdk",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Mastering Cue techniques\", \r\n    \"author\": \"Kyren Wilson\",\r\n    \"published_year\": \"1999\",\r\n    \"book_summary\": \"Primer book for Cue basics\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/books/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"books",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -1,3 +1,3 @@
 mvn clean test -DsuiteXmlFile=positiveTests.xml -Denv=test
 mvn clean test -DsuiteXmlFile=negativeTests.xml -Denv=test
-allure generate --clean --single-file "./allure-results/" -o "./allure-report"
+mvn clean test -DsuiteXmlFile=allTests.xml -Denv=test
