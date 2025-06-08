@@ -15,8 +15,6 @@ import java.io.IOException;
 
 public class HealthCheckTest extends BaseTestCase{
 
-    String requestURL;
-
     @BeforeClass
     public void testSetup() {
         Allure.label("owner", "Shridhar Porje");
@@ -25,16 +23,14 @@ public class HealthCheckTest extends BaseTestCase{
         String baseURL = TestContext.getInstance().get("base_url").toString();
         String portNumber = TestContext.getInstance().get("port").toString();
         requestURL = baseURL + ":" + portNumber;
+        requestSpecification = RestAssured.given();
+        requestSpecification.baseUri(requestURL);
     }
 
     @Test(description = "Bookstore API Health Check", groups = {"smoke"})
     public void validateBookStoreAPIHealth() throws IOException {
         String apiEndPoint = "/health";
-        Response response = RestAssured
-                .given()
-                .baseUri(requestURL)
-                .when()
-                .get(apiEndPoint);
+        Response response  = requestSpecification.get(apiEndPoint);
 
         int statusCode = response.getStatusCode();
         String respBody = response.asString();

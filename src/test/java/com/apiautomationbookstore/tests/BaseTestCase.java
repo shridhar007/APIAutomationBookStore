@@ -3,8 +3,10 @@ package com.apiautomationbookstore.tests;
 import com.apiautomationbookstore.util.CommonFunctions;
 import com.apiautomationbookstore.util.TestContext;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.javafaker.Faker;
 import io.qameta.allure.Allure;
 import io.qameta.allure.Step;
+import io.restassured.specification.RequestSpecification;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Parameters;
@@ -22,6 +24,9 @@ import java.util.Map;
 abstract class BaseTestCase {
 
     public static TestContext testContext;
+    public String requestURL;
+    public RequestSpecification requestSpecification;
+    Faker faker = new Faker();
 
     @BeforeSuite
     @Parameters("env")
