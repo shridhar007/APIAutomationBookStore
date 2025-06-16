@@ -1,3 +1,3 @@
-mvn clean test -DsuiteXmlFile=positiveTests.xml -Denv=test
-mvn clean test -DsuiteXmlFile=negativeTests.xml -Denv=test
-mvn clean test -DsuiteXmlFile=allTests.xml -Denv=test
+mvn clean test -DsuiteXmlFile="positiveTests.xml" -Denv="test"
+mvn clean test -DsuiteXmlFile="negativeTests.xml" -Denv="test"
+mvn clean test -DsuiteXmlFile="allTests.xml" -Denv="test"
